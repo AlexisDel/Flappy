@@ -5,7 +5,7 @@
 L'objectif de ce projet et de réaliser un mini jeu inspiré du jeu mobile *"flappy bird"*. Dans notre version, un cercle se déplace le long d'une ligne brisé, le but étant de garder le cercle sur cette ligne.
 Pour cela, le joueur doit cliquer avec la souris ou sur la touche espace afin de faire sauter le cercle, celui-ci étant soumis à la gravité, il redescend tout seul.
 
-![screnshot.png](C:\Users\0sh8t\Code\PCII\Rapport\images_rapport\screnshot.png)
+![screnshot.png](images_rapport/screnshot.png)
 
 ## Analyse globale
 
@@ -38,13 +38,13 @@ En plus de ces fonctionnalités nécessaires au fonctionnement du jeu, on peut a
 
 ## Plan de développement
 
-![digramme.png](C:\Users\0sh8t\Code\PCII\Rapport\images_rapport\digramme.png)
+![digramme.png](images_rapport/digramme.png)
 
 ## Conception générale
 
 Afin de simplifier et rendre plus claire l'implémentation, le modèle MVC a été choisis.
 
-<img src="file:///C:/Users/0sh8t/Code/PCII/Rapport/images_rapport/mvc.png" title="" alt="mvc.png" width="554">
+<img src="images_rapport/mvc.png" title="" alt="mvc.png" width="554">
 
 Voici comment les différentes fonctionnalités du jeu rentre dans ce motif :
 
@@ -61,13 +61,13 @@ Voici comment les différentes fonctionnalités du jeu rentre dans ce motif :
 
 Pour créer la fenêtre, nous utilisions l'API Swing. Nous avons créé une classe `Window` qui étend la classe `JFrame` de Swing afin de simplifier la création d'une fenêtre d'affichage (et rendre plus propre et compact le code). Cette classe à aussi une fonction `initWindow` qui permet d'ajouter un affichage à la fenêtre, un affichage étant une instance de la classe `Display` qui est détailler ci-dessous.
 
-![window.png](C:\Users\0sh8t\Code\PCII\Rapport\images_rapport\window.png)
+![window.png](images_rapport/window.png)
 
 ###### Affichage des éléments graphiques
 
 La classe `Display` correspond à notre affichage, cette classe étends la classe `JPanel` de l'API Swing. La fonction `paint` issu de la classe `JPanel` nous permet de dessiner des choses à l'écran. On peut alors par exemple grâce à la fonction `drawOval` dessiner le cercle.
 
-![display.png](C:\Users\0sh8t\Code\PCII\Rapport\images_rapport\display.png)
+![display.png](images_rapport/display.png)
 
 ###### Déplacement de l'ovale
 
@@ -75,13 +75,13 @@ Pour gérer les cliques souris de l'utilisateur, nous utilisons la programmation
 
 Lorsque la fonction `mouseClicked` ou `Keypressed(barre espace)` est appelé, la valeur de la position verticale du cercle est incrémenté de manière à le faire sauter.
 
-![controller.png](C:\Users\0sh8t\Code\PCII\Rapport\images_rapport\controller.png)
+![controller.png](images_rapport/controller.png)
 
 ###### Mécanisme de gravité
 
 La gravité est gérée grâce via la classe `Fly` qui étends `Thread`, la classe `Thread` implémente la fonction `run` qui est appelé lorsque le thread est démarré. Ce thread en particulier appel tous les 100 ms la fonction `moveDown` de `Engine` qui fait descendre le cercle en décrémentant la valeur de la position verticale du cercle.
 
-![fly.png](C:\Users\0sh8t\Code\PCII\Rapport\images_rapport\fly.png)
+![fly.png](images_rapport/fly.png)
 
 ###### Génération de la ligne brisée
 
@@ -89,7 +89,7 @@ La ligne brisée est générée via la classe `Path`, le parcours est représent
 
 Pour afficher une ligne brisée, on dessine grâce à la fonction `paint` de l'affichage`Display` des droites entre chaque point de`path` via la fonction `drawLine` de Swing.
 
-![path.png](C:\Users\0sh8t\Code\PCII\Rapport\images_rapport\path.png)
+![path.png](images_rapport/path.png)
 
 ###### Animation de la ligne brisée
 
@@ -99,7 +99,7 @@ L'animation de la ligne brisée est faite via la classe `Forward` qui étends el
 
 2. Il met à jour la variable `path` qui correspond à la liste des points de la ligne brisée. Lorsque qu'un point sort de l'affichage, il est supprimé de la liste des points, de la même manière, lorsque le dernier point rentre dans la fenêtre d'affichage, un nouveau est générer plus loin hors de la fenêtre d'affichage ([pseudo-code](#algorithme-de-mise-a-jour-du-parcours)).
 
-![forward.png](C:\Users\0sh8t\Code\PCII\Rapport\images_rapport\forward.png)
+![forward.png](images_rapport/forward.png)
 
 ###### Détection des collisions
 
@@ -115,7 +115,7 @@ Tous les oiseaux affichés à l'écran sont stockés dans une `ArrayList`, une f
 
 Toutes les secondes, il y a une chance sur dix qu'un nouvel oiseau apparaisse.
 
-![bird.png](C:\Users\0sh8t\Code\PCII\Rapport\images_rapport\bird.png)
+![bird.png](images_rapport/bird.png)
 
 ###### Synchronisation de l'affichage
 
@@ -202,7 +202,7 @@ Si le haut du cercle < yChemin OU le bas du cercle > yChemin alors
 
 ## Résultat
 
-![result.png](C:\Users\0sh8t\Code\PCII\Rapport\images_rapport\result.png)
+![result.png](images_rapport/result.png)
 
 ## Documentation utilisateur
 
