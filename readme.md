@@ -85,7 +85,7 @@ La gravité est gérée grâce via la classe `Fly` qui étends `Thread`, la clas
 
 ###### Génération de la ligne brisée
 
-La ligne brisée est générée via la classe `Path`, le parcours est représenté par une `ArrayList` de points nommé `path`. Ces points sont créés via le constructeur de la classe en fonction de la largeur de l'affichage de manière à ce que le dernier point soit hors de l'affichage, cela permettant à ligne brisé d'être dessiné sur l'ensemble de l'affichage ([pseudo-code](#algorithme-de-generation-du-parcours)). Afin de s'assurer que 2 points voisins n'aient pas des positions verticales trop différentes, on génère la position verticale d'un nouveau point en fonction de la hauteur du point précédent. la différence maximum de hauteur entre les 2 points est calculé via cette [formule](#calcul-de-la-distance-verticale-maximum-entre-2-points). Cette formule s'assure que la pente entre 2 points ne soit pas trop raide.
+La ligne brisée est générée via la classe `Path`, le parcours est représenté par une `ArrayList` de points nommé `path`. Ces points sont créés via le constructeur de la classe en fonction de la largeur de l'affichage de manière à ce que le dernier point soit hors de l'affichage, cela permettant à ligne brisé d'être dessiné sur l'ensemble de l'affichage ([pseudo-code](#algorithme-de-génération-du-parcours)). Afin de s'assurer que 2 points voisins n'aient pas des positions verticales trop différentes, on génère la position verticale d'un nouveau point en fonction de la hauteur du point précédent. la différence maximum de hauteur entre les 2 points est calculé via cette [formule](#calcul-de-la-distance-verticale-maximum-entre-2-points). Cette formule s'assure que la pente entre 2 points ne soit pas trop raide.
 
 Pour afficher une ligne brisée, on dessine grâce à la fonction `paint` de l'affichage`Display` des droites entre chaque point de`path` via la fonction `drawLine` de Swing.
 
@@ -97,13 +97,13 @@ L'animation de la ligne brisée est faite via la classe `Forward` qui étends el
 
 1. Il "fait avancer" l'affichage tous les 100 ms en incrémentant la variable `currentX` qui correspond au mouvement de l'affichage. Pour animer la ligne brisée, on la redessine les points à leur position - `currentX` ce qui a pour effet de "faire reculer" la ligne brisée.
 
-2. Il met à jour la variable `path` qui correspond à la liste des points de la ligne brisée. Lorsque qu'un point sort de l'affichage, il est supprimé de la liste des points, de la même manière, lorsque le dernier point rentre dans la fenêtre d'affichage, un nouveau est générer plus loin hors de la fenêtre d'affichage ([pseudo-code](#algorithme-de-mise-a-jour-du-parcours)).
+2. Il met à jour la variable `path` qui correspond à la liste des points de la ligne brisée. Lorsque qu'un point sort de l'affichage, il est supprimé de la liste des points, de la même manière, lorsque le dernier point rentre dans la fenêtre d'affichage, un nouveau est générer plus loin hors de la fenêtre d'affichage ([pseudo-code](#algorithme-de-mise-à-jour-du-parcours)).
 
 ![forward.png](images_rapport/forward.png)
 
 ###### Détection des collisions
 
-La détection de collision se fait via la fonction `testPerdu` de la classe `Engine`, celle-ci est appelé après chaque modification de la hauteur du cercle à savoir à chaque fois qu'il tombe ou qu'il saute. Cette fonction vérifie que le point le plus haut du cercle est au-dessus de la ligne brisée et que le point le plus bas du cercle est en dessous de la ligne. ([pseudo-code](#algorithme-de-detection-de-collisions)).
+La détection de collision se fait via la fonction `testPerdu` de la classe `Engine`, celle-ci est appelé après chaque modification de la hauteur du cercle à savoir à chaque fois qu'il tombe ou qu'il saute. Cette fonction vérifie que le point le plus haut du cercle est au-dessus de la ligne brisée et que le point le plus bas du cercle est en dessous de la ligne. ([pseudo-code](#algorithme-de-détection-de-collisions)).
 
 À cause du fait qu'au début du jeu le premier point du parcours n'est pas à l'extrémité de la fenêtre d'affichage, l'indice des point du parcours définissant la droite sur laquelle se trouve le cercle à l'instant t n'est pas toujours le même, il a donc fallu gérer ce cas particulier.
 
